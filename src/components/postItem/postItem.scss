@@ -1,0 +1,32 @@
+.post {
+    display: flex;;
+    padding: 15px;
+    border: 1px solid #c1c1c1;
+    border-radius: 12px;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px #c1c1c1;
+    &__title {
+        font-size: 14px;
+        font-weight: 700;
+    }
+    &__descr {
+        font-size: 13px;
+    }
+}
+
+button {
+    cursor: pointer;
+    background-color: #e5ebf1;
+    color: #246297;
+    border: 1px solid #e5ebf1;
+    border-radius: 6px;
+    font-size: 13px;
+    width: 150px;
+    height: 30px;
+    &:hover {
+        background-color: #cad6e3;
+    }
+}
