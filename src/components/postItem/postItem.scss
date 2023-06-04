@@ -17,18 +17,17 @@
     &__descr {
         font-size: 13px;
     }
-}
-
-button {
-    cursor: pointer;
-    background-color: #e5ebf1;
-    color: #246297;
-    border: 1px solid #e5ebf1;
-    border-radius: 6px;
-    font-size: 13px;
-    width: 150px;
-    height: 30px;
-    &:hover {
-        background-color: #cad6e3;
+    &__btns {
+        cursor: pointer;
+        background-color: #e5ebf1;
+        color: #246297;
+        border: 1px solid #e5ebf1;
+        border-radius: 6px;
+        font-size: 13px;
+        width: 150px;
+        height: 30px;
+            &:hover {
+                background-color: #cad6e3;
+        }
     }
 }

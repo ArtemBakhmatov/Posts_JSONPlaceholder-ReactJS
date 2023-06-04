@@ -2,16 +2,17 @@ import React from 'react';
 import './postItem.scss';
 
 const Postitem = (props) => {
-    const {id, title, description} = props.post;
+    const {title, body} = props.post;
+    const {number} = props;
     return (
         <li className="post__item">
-            <div className='post__title'>{id}. {title}</div>
+            <div className='post__title'>{number}. {title}</div>
             <div className='post__descr'>
-                {description}
+                {body}
             </div>
-            <div className="post__btns">
-                <button>Удалить</button>
-            </div>
+            <button className="post__btns">
+                Удалить
+            </button>
         </li>
     );
 };
