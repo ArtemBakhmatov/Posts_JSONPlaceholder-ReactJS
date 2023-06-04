@@ -1,13 +1,15 @@
 .post {
-    display: flex;;
-    padding: 15px;
-    border: 1px solid #c1c1c1;
-    border-radius: 12px;
-    margin-top: 15px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    box-shadow: 0 0 10px #c1c1c1;
+    &__item {
+        display: flex;;
+        padding: 15px;
+        border: 1px solid #c1c1c1;
+        border-radius: 12px;
+        margin-top: 15px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        box-shadow: 0 0 10px #c1c1c1;
+    }
     &__title {
         font-size: 14px;
         font-weight: 700;

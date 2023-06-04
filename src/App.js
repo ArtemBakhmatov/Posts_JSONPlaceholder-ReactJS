@@ -1,13 +1,16 @@
 import React from 'react';
-import Postitem from './components/postItem/Postitem';
+import PostList from './components/postList/PostList';
 
 const App = () => {
+	const posts = [
+		{id: 1, title: 'JavaScript', description: 'Description'},
+		{id: 2, title: 'HTML', description: 'Description'},
+		{id: 3, title: 'CSS', description: 'Description'}
+	];
 
 	return (
 		<div className='app'>
-			<Postitem post={{id: 1, title: 'JavaScript', description: 'Description'}} />
-			<Postitem post={{id: 2, title: 'HTML', description: 'Description'}} />
-			<Postitem post={{id: 3, title: 'CSS', description: 'Description'}} />
+			<PostList posts={posts} title="Programming posts"/>
 		</div>
 	);
 };

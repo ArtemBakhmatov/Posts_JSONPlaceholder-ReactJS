@@ -4,7 +4,7 @@ import './postItem.scss';
 const Postitem = (props) => {
     const {id, title, description} = props.post;
     return (
-        <div className="post">
+        <li className="post__item">
             <div className='post__title'>{id}. {title}</div>
             <div className='post__descr'>
                 {description}
@@ -12,7 +12,7 @@ const Postitem = (props) => {
             <div className="post__btns">
                 <button>Удалить</button>
             </div>
-        </div>
+        </li>
     );
 };
 
