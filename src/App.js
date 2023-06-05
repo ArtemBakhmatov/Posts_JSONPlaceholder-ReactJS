@@ -1,8 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import PostList from './components/postList/PostList';
 import PostForm from './components/postForm/PostForm';
-import MySelect from './components/select/MySelect';
-import MyInput from './components/Input/MyInput';
+import PostFilter from './components/postFilter/PostFilter';
 
 const App = () => {
 	const [posts, setPosts] = useState([
@@ -10,8 +9,7 @@ const App = () => {
 		{id: 2, title: 'HTML', body: 'fdgerhgehon'},
 		{id: 3, title: 'CSS', body: 'tty54yg'}
 	]);
-	const [selectedSort, setSelectedSort] = useState('');
-	const [searchQuery, setSearchQuery] = useState('');
+	const [filter, setFilter] = useState({sort: '', query: ''});
 
 	const createPost = (newPost) => {   // Добавить пост
 		setPosts([...posts, newPost]);
@@ -22,47 +20,25 @@ const App = () => {
 	}
 
 	const sortedPosts = useMemo(() => {
-		if (selectedSort) {
-			return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
+		if (filter.sort) {
+			return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
 		}
 		return posts;
-	}, [selectedSort, posts]);
+	}, [filter.sort, posts]);
 
 	const sortedAndSearchedPosts = useMemo(() => {
-		return sortedPosts.filter(post => post.title.toLowerCase().includes(searchQuery));
-	}, [searchQuery, sortedPosts]);
-
-	const sortPosts = (sort) => {
-		setSelectedSort(sort);
-	}
+		return sortedPosts.filter(post => post.title.toLowerCase().includes(filter.query.toLowerCase()));
+	}, [filter.query, sortedPosts]);
 
 	return (
 		<div className='app'>
 			<PostForm create={createPost} />
 			<hr style={{margin: '15px 0'}} />
-			<MyInput 
-				value={searchQuery}
-				onChange={e => setSearchQuery(e.target.value)}
-				placeholder='Поиск...'
+			<PostFilter 
+				filter={filter} 
+				setFilter={setFilter}
 			/>
-			<MySelect
-				value={selectedSort}
-				onChange={sortPosts}
-				defaultValue='Сортирвка'
-				options={[
-					{value: 'title', name: 'По названию'},
-					{value: 'body', name: 'По описанию'}
-				]}
-			/>
-			{sortedAndSearchedPosts.length !== 0
-				?
-					<PostList remove={removePost} posts={sortedAndSearchedPosts} title="Programming posts"/>
-				:
-				<div style={{textAlign: 'center', fontWeight: 'bold', fontSize: '18px'}}>
-					Посты не найдены
-				</div>
-			}
-			
+			<PostList remove={removePost} posts={sortedAndSearchedPosts} title="Programming posts"/>	
 		</div>
 	);
 };
