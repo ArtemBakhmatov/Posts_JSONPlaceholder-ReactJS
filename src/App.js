@@ -9,35 +9,33 @@ const App = () => {
 		{id: 2, title: 'HTML', body: 'Description'},
 		{id: 3, title: 'CSS', body: 'Description'}
 	]);
-	const [title, setTitle] = useState('');
-	const [body, setBody] = useState('');
+	const [post, setPost] = useState({title: '', body: ''});
 
 	const addNewPost = (e) => {
 		e.preventDefault();
-		const newPost = {
-			id: Date.now(),
-			title: title,
-			body: body
-		};
-		setPosts([...posts, newPost]);
-		setTitle('');
-		setBody('');
+		setPosts([...posts, {...post, id: Date.now()}]);
+		setPost({title: '', body: ''});
+		
 	}
 
-	const onChangleInput = (e) => {
-		setTitle(e.target.value);
+	const onChangleInputTitle = (e) => {
+		setPost({...post, title: e.target.value});
+	}
+
+	const onChangleInputBody = (e) => {
+		setPost({...post, body: e.target.value});
 	}
 
 	return (
 		<div className='app'>
 			<form>
 				<MyInput 
-					value={title} 
-					onChange={e => onChangleInput(e)}
+					value={post.title} 
+					onChange={e => onChangleInputTitle(e)}
 					placeholder='Название поста' />
 				<MyInput 
-					value={body}
-					onChange={e => setBody(e.target.value)}
+					value={post.body}
+					onChange={e => onChangleInputBody(e)}
 					placeholder='Описание поста'/>
 				<MyButton onClick={e => addNewPost(e)} />
 			</form>
