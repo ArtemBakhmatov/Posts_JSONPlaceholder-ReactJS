@@ -30,7 +30,7 @@ const PostForm = ({create}) => {
                 value={post.body}
                 onChange={e => onChangleInputBody(e)}
                 placeholder='Описание поста'/>
-            <MyButton onClick={e => addNewPost(e)} />
+            <MyButton onClick={e => addNewPost(e)}>Создать пост</MyButton>
         </form>
     );
 };

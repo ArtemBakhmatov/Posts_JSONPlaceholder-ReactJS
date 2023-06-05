@@ -13,10 +13,22 @@ const App = () => {
 		setPosts([...posts, newPost]);
 	}
 
+	const removePost = (post) => {
+		setPosts(posts.filter(p => p.id !== post.id));
+	}
+
 	return (
 		<div className='app'>
 			<PostForm create={createPost} />
-			<PostList posts={posts} title="Programming posts"/>
+			{posts.length !== 0
+				?
+					<PostList remove={removePost} posts={posts} title="Programming posts"/>
+				:
+				<div style={{textAlign: 'center', fontWeight: 'bold', fontSize: '18px'}}>
+					Посты не найдены
+				</div>
+			}
+			
 		</div>
 	);
 };
