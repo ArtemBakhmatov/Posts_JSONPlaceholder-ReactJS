@@ -9,6 +9,7 @@ const Postitem = (props) => {
     return (
         <li className="post__item">
             <div className='post__title'>{number}. {title}</div>
+            <div className='post__none'>{post.id}</div>
             <div className='post__descr'>
                 {body}
             </div>
