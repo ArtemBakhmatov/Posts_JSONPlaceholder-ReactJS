@@ -6,15 +6,22 @@ import MyModal from './components/modal/MyModal';
 import MyButton from './components/button/MyButton';
 import { usePosts } from './hook/usePosts';
 import PostService from './API/PostService';
+import Loader from './components/loader/Loader';
 
 const App = () => {
 	const [posts, setPosts] = useState([]);
 	const [filter, setFilter] = useState({sort: '', query: ''});
 	const [modal, setModal] = useState(false);
+	const [isPostloading, setIsPostLoading] = useState(false);
 
 	const fetchPosts = async () => {
-		const posts = await PostService.getAll();
-		setPosts(posts);
+		setIsPostLoading(true);
+		setTimeout(async () => {
+			const posts = await PostService.getAll();
+			setPosts(posts);
+			setIsPostLoading(false);
+		}, 1000);
+		
 	};
 
 	useEffect(() => {
@@ -46,7 +53,12 @@ const App = () => {
 				filter={filter} 
 				setFilter={setFilter}
 			/>
-			<PostList remove={removePost} posts={sortedAndSearchedPosts} title="Programming posts"/>	
+			{isPostloading 
+				?
+					<Loader />
+				:
+				<PostList remove={removePost} posts={sortedAndSearchedPosts} title="Programming posts"/>	
+			}
 		</div>
 	);
 };
