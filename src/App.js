@@ -19,7 +19,7 @@ const App = () => {
 	const [page, setPage] = useState(1);				// первая страница
 	let pagesArray = getPagesArray(totalPages);
 
-	const [fetchPosts, isPostLoading, postError] = useFething(async () => {
+	const [fetchPosts, isPostLoading, postError] = useFething(async (limit, page) => {
 		const responce = await PostService.getAll(limit, page);
 			setPosts(responce.data);
 			const totalCount = responce.headers['x-total-count']; // общее кол-во постов
@@ -29,11 +29,12 @@ const App = () => {
 	console.log(totalPages);
 
 	useEffect(() => {
-		fetchPosts();
-	}, [page]);
+		fetchPosts(limit, page);
+	}, []);
 
 	const changePage = (page) => {
 		setPage(page);
+		fetchPosts(limit, page);
 	}
 
 	const createPost = (newPost) => {   // Добавить пост
