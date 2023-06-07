@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PostList from './components/postList/PostList';
 import PostForm from './components/postForm/PostForm';
 import PostFilter from './components/postFilter/PostFilter';
@@ -7,13 +8,15 @@ import MyButton from './components/button/MyButton';
 import { usePosts } from './hook/usePosts';
 
 const App = () => {
-	const [posts, setPosts] = useState([
-		{id: 1, title: 'JavaScript', body: 'dwddqa'},
-		{id: 2, title: 'HTML', body: 'fdgerhgehon'},
-		{id: 3, title: 'CSS', body: 'tty54yg'}
-	]);
+	const [posts, setPosts] = useState([]);
 	const [filter, setFilter] = useState({sort: '', query: ''});
 	const [modal, setModal] = useState(false);
+
+	const fetchPosts = async () => {
+		const responce = await axios.get('https://jsonplaceholder.typicode.com/posts');
+		setPosts(responce.data);
+		console.log(responce);
+	};
 
 	const createPost = (newPost) => {   // Добавить пост
 		setPosts([...posts, newPost]);
@@ -28,6 +31,9 @@ const App = () => {
 
 	return (
 		<div className='app'>
+			<MyButton onClick={fetchPosts}>
+				Получить посты с сервера
+			</MyButton>
 			<MyButton onClick={() => setModal(true)}>
 				Создать пост
 			</MyButton>
