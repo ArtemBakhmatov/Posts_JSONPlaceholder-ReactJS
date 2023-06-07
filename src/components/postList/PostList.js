@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Postitem from '../postItem/Postitem';
 
 const PostList = ({posts, title, remove}) => {
+    const nodeRef = useRef(null);
     return (
         <>
             <h1 className='title'>{title}</h1>
@@ -20,6 +21,7 @@ const PostList = ({posts, title, remove}) => {
                                     key={post.id}
                                     timeout={500}
                                     classNames='item'
+                                    nodeRef={nodeRef}
                                 >
                                     <Postitem remove={remove} number={i + 1} post={post} key={post.id} />
                                 </CSSTransition>
