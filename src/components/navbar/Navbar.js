@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import MyButton from '../button/MyButton';
 import './navbar.scss';
 
-const NavBar = ({setModal}) => {
+const Navbar = ({setModal}) => {
     return (
         <div className="navbar">
             <div className="navbar__container navbar__container-flex">
@@ -11,10 +12,10 @@ const NavBar = ({setModal}) => {
                 </MyButton>
                 <ul className="navbar__list">
                     <li className="navbar__item">
-                        <a href="#" className="navbar__link">О сайте</a>
+                        <Link to='/about' className="navbar__link">О сайте</Link>
                     </li>
                     <li className="navbar__item">
-                        <a href="#" className="navbar__link">Посты</a>
+                        <Link to='/posts' className="navbar__link">Посты</Link>
                     </li>
                 </ul>
             </div>
@@ -22,4 +23,4 @@ const NavBar = ({setModal}) => {
     );
 };
 
-export default NavBar;
+export default Navbar;
