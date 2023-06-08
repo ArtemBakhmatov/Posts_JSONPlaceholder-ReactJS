@@ -1,0 +1,38 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__container {
+        width: 1140px;
+        padding: 0 10px;
+        margin: 0 auto;
+        &-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    &__list {
+        list-style-type: none;
+        display: flex;
+    }
+    &__item {
+        margin-left: 15px;
+    }
+    &__link {
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+        padding: 5px 0;
+        transition: all 0.3s ease;
+        &:hover {
+            color: #246297;
+        }
+    }
+}

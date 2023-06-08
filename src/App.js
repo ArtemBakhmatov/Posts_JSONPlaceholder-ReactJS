@@ -10,6 +10,7 @@ import Loader from './components/loader/Loader';
 import { useFething } from './hook/useFething';
 import { getPageCount, getPagesArray } from './utils/pages';
 import Pagination from './components/pagination/Pagination';
+import NavBar from './components/navbar/Navbar';
 
 const App = () => {
 	const [posts, setPosts] = useState([]);
@@ -50,14 +51,11 @@ const App = () => {
 
 	return (
 		<div className='app'>
-			<MyButton onClick={() => setModal(true)}>
-				Создать пост
-			</MyButton>
+			<NavBar setModal={setModal} />
 			<MyModal visible={modal} setVisible={setModal} >
 				<PostForm create={createPost} />
 			</MyModal>
-			
-			<hr style={{margin: '15px 0'}} />
+			<hr style={{margin: '55px 0 12px 0'}} />
 			<PostFilter 
 				filter={filter} 
 				setFilter={setFilter}
