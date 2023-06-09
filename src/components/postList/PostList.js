@@ -2,12 +2,10 @@ import React, { useRef } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Postitem from '../postItem/Postitem';
 
-const PostList = ({posts, title, remove}) => {
+const PostList = ({posts, remove}) => {
     const nodeRef = useRef(null);
     return (
         <>
-            <h1 className='title'>{title}</h1>
-            
             {!posts.length
                 ? 
                     <div style={{textAlign: 'center', fontWeight: 'bold', fontSize: '18px'}}>

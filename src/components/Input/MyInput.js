@@ -3,7 +3,7 @@ import './myInput.scss';
 
 const MyInput = ({...props}) => {
     return (
-        <input type='text' {...props} />
+        <input type='text' className='myInput' {...props} />
     );
 };
 

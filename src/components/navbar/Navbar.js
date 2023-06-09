@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import MyButton from '../button/MyButton';
 import './navbar.scss';
 
-const Navbar = ({setModal}) => {
+const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar__container navbar__container-flex">
-                <MyButton onClick={() => setModal(true)}>
-                    Создать пост
-                </MyButton>
+                <div className="navbar__title">JSONPlaceholder API</div>
                 <ul className="navbar__list">
                     <li className="navbar__item">
                         <Link to='/about' className="navbar__link">О сайте</Link>

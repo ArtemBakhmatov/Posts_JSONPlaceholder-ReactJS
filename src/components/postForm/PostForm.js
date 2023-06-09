@@ -14,8 +14,7 @@ const PostForm = ({create}) => {
 		e.preventDefault();
         const newPost = {...post, id: Date.now()};
 		create(newPost);
-        setPost({title: '', body: ''});
-        
+        setPost({title: '', body: ''});   
 	}
 
 	const onChangleInputTitle = (e) => {

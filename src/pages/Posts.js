@@ -50,21 +50,23 @@ const Posts = () => {
 
 	return (
 		<div className='app'>
-			<NavBar setModal={setModal} />
+			<NavBar />
 			<MyModal visible={modal} setVisible={setModal} >
 				<PostForm create={createPost} />
 			</MyModal>
-			<hr style={{margin: '55px 0 12px 0'}} />
+			<hr style={{margin: '65px 0 23px 0'}} />
+			<h1 style={{textAlign: 'center', marginBottom: '20px'}}>JSONPlaceholder Posts</h1>
 			<PostFilter 
 				filter={filter} 
 				setFilter={setFilter}
+				setModal={setModal}
 			/>
 			{ postError && <div>Произошла ошибка ${postError}</div> }
 			{isPostLoading
 				?
 					<Loader />
 				:
-				<PostList remove={removePost} posts={sortedAndSearchedPosts} title="Programming posts"/>	
+				<PostList remove={removePost} posts={sortedAndSearchedPosts} />	
 			}
 			<Pagination
 				page={page}

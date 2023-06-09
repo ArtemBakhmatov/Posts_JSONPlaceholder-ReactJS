@@ -2,6 +2,8 @@ import React from 'react';
 import './myModal.scss';
 const classes = 'myModal';
 const classesActive = 'myModal myModal__active';
+const modalContentHide = 'myModal__content';
+const modalContentShow = 'myModal__content myModal__content-active';
 
 const MyModal = ({children, visible, setVisible}) => {
     return (
@@ -10,7 +12,7 @@ const MyModal = ({children, visible, setVisible}) => {
             onClick={() => setVisible(false)}
         >
             <div 
-                className="myModal__content"
+                className={visible ? modalContentShow : modalContentHide}
                 onClick={(e) => e.stopPropagation()}
             >
                 {children}

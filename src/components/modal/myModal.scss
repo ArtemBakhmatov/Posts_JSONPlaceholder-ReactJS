@@ -11,6 +11,7 @@
         opacity: 1; 
     }
     &__content {
+        display: none;
         position: absolute;
         top: 10%;
         left: 50%;
@@ -20,5 +21,8 @@
         border-radius: 12px;
         width: 300px;
         box-shadow: 0 20px 40px 0 rgba(0,0,0,.7);
+        &-active {
+            display: block;
+        }
     }
 }
