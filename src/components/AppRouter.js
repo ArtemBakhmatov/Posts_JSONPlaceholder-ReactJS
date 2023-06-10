@@ -1,18 +1,32 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import About from "../pages/About";
-import Error from "../pages/Error";
-import Posts from "../pages/Posts";
-import PostIdPage from "./postIdPage/PostIdPage";
+import { privateRoutes, publicRoutes } from "../router";
 
 const AppRouter = () => {
+    const isAuth = true;
     return (
         <Routes>
-            <Route path="/about" element={<About />}/>
-            <Route exact path="/posts" element={<Posts />}/>
-            <Route exact path="/posts/:id" element={<PostIdPage />}/>
-            <Route path="/*" element={<Error />}/>
+            {isAuth 
+                ?
+                    privateRoutes.map(route => 
+                        <Route 
+                            key={route.path}
+                            path={route.path} 
+                            element={<route.component />} 
+                            exact={route.exact}
+                        /> 
+                    )
+                :
+                    publicRoutes.map(route => 
+                        <Route 
+                            key={route.path}
+                            path={route.path} 
+                            element={<route.component />} 
+                            exact={route.exact}
+                        /> 
+                    )
+            }
         </Routes>
     );
 };
