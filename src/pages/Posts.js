@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PostList from '../components/postList/PostList';
 import PostForm from '../components/postForm/PostForm';
 import PostFilter from '../components/postFilter/PostFilter';
@@ -8,7 +8,6 @@ import PostService from '../API/PostService';
 import Loader from '../components/loader/Loader';
 import { useFething } from '../hook/useFething';
 import { getPageCount, getPagesArray } from '../utils/pages';
-import Pagination from '../components/pagination/Pagination';
 import NavBar from '../components/navbar/Navbar';
 
 const Posts = () => {
@@ -18,24 +17,35 @@ const Posts = () => {
 	const [totalPages, setTotalPages] = useState(0); 	// общее кол-во постов
 	const [limit, setLimit] = useState(10);				// кол-во постов в одной странице
 	const [page, setPage] = useState(1);				// первая страница
+	const lastElement = useRef();						// последний элемент
+	const observer = useRef();							// наблюдатель
+	console.log(lastElement);
 
 	const [fetchPosts, isPostLoading, postError] = useFething(async (limit, page) => {
-		const responce = await PostService.getAll(limit, page);
-			setPosts(responce.data);
-			const totalCount = responce.headers['x-total-count']; // общее кол-во постов
+		const response = await PostService.getAll(limit, page);
+			setPosts([...posts, ...response.data]);
+			const totalCount = response.headers['x-total-count']; // общее кол-во постов
 			setTotalPages(getPageCount(totalCount, limit));
 	});
 
-	console.log(totalPages);
+	useEffect(() => {
+		if (isPostLoading) return;
+		if (observer.current) observer.current.disconnect();
+		let callback = function(entries, observer) {
+			if (entries[0].isIntersecting && page < totalPages) {
+				console.log(page);
+				setPage(page + 1);
+			}
+			console.log(entries);
+
+		}
+		observer.current = new IntersectionObserver(callback);
+		observer.current.observe(lastElement.current);
+	}, [isPostLoading]);
 
 	useEffect(() => {
 		fetchPosts(limit, page);
-	}, []);
-
-	const changePage = (page) => {
-		setPage(page);
-		fetchPosts(limit, page);
-	}
+	}, [page]);
 
 	const createPost = (newPost) => {   // Добавить пост
 		setPosts([...posts, newPost]);
@@ -62,18 +72,9 @@ const Posts = () => {
 				setModal={setModal}
 			/>
 			{ postError && <div>Произошла ошибка ${postError}</div> }
-			{isPostLoading
-				?
-					<Loader />
-				:
-				<PostList remove={removePost} posts={sortedAndSearchedPosts} />	
-			}
-			<Pagination
-				page={page}
-				changePage={changePage}
-				totalPages={totalPages}
-			/>
-			
+			<PostList remove={removePost} posts={sortedAndSearchedPosts} />	
+			<div ref={lastElement}></div>
+			{isPostLoading && <Loader />}
 		</div>
 	);
 };

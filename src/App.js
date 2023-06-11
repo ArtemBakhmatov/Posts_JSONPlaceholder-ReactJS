@@ -14,7 +14,7 @@ const App = () => {
 		if (localStorage.getItem('auth')) {
 			setIsAuth(true);
 		} else {
-			setIsAuth(true);
+			setIsAuth(false);
 		}
 		setIsLoading(false)
 	}, []);
