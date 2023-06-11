@@ -5,6 +5,8 @@ import PostService from '../../API/PostService';
 import Loader from '../../components/loader/Loader';
 import { useFething } from '../../hook/useFething';
 
+import './postIdPage.scss';
+
 
 const PostIdPage = () => {
     const params = useParams();
@@ -27,13 +29,14 @@ const PostIdPage = () => {
     }, []);
 
     return (
-        <div style={{marginTop: 50, textAlign: 'center'}}>
-            <h1>Вы открыли страницу поста с ID = {params.id}</h1>
+        <div className='postId'>
+            <hr style={{margin: '65px 0 15px 0'}} />
+            <div className='postId__title-id'>Вы открыли страницу поста с ID = {params.id}</div>
             {isLoading 
                 ?
                     <Loader />
                 :
-                    <div>{post.id}, {post.title}</div>
+                    <div className='postId__title'><span>{post.id}</span>. {post.title}</div>
             }
             <h1>
                 Комментарии
@@ -44,7 +47,7 @@ const PostIdPage = () => {
                 : 
                     <div>
                         {comments.map(comm =>
-                            <div key={comm.id} style={{marginTop: 15}}>
+                            <div key={comm.id} className='postId__item'>
                                 <h5>{comm.email}</h5>
                                 <div>{comm.body}</div>
                             </div>
