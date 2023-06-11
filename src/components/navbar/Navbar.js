@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context';
+
 import './navbar.scss';
+import MyButton from '../button/MyButton';
 
 const Navbar = () => {
+    const {isAuth, setIsAuth} = useContext(AuthContext);
+    const logout = () => {
+        setIsAuth(false);
+        localStorage.removeItem('auth');
+    }
     return (
         <div className="navbar">
             <div className="navbar__container navbar__container-flex">
@@ -15,6 +24,7 @@ const Navbar = () => {
                         <Link to='/posts' className="navbar__link">Посты</Link>
                     </li>
                 </ul>
+                {isAuth && <MyButton onClick={logout}>Выйти</MyButton>}
             </div>
         </div>
     );
