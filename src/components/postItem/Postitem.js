@@ -16,12 +16,14 @@ const Postitem = (props) => {
             <div className='post__descr'>
                 {body}
             </div>
-            <MyButton onClick={() => router(`/posts/${post.id}`)}>
-                Открыть
-            </MyButton>
-            <MyButton onClick={() => remove(post)}>
-                Удалить
-            </MyButton>
+            <div className="post__btns">
+                <MyButton onClick={() => router(`/posts/${post.id}`)}>
+                    Открыть
+                </MyButton>
+                <MyButton onClick={() => remove(post)}>
+                    Удалить
+                </MyButton>
+            </div>
         </li>
     );
 };

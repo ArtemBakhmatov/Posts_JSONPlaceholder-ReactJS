@@ -14,7 +14,30 @@
         margin: 0 auto;
     }
 }
+
+@media (max-width: 1200px) {
+    .animationBlock {
+        width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .animationBlock {
+        width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .animationBlock {
+        width: 540px;
+    }
+}
   
+@media (max-width: 576px) {
+    .animationBlock {
+        width: 100%;
+    }
+}
   
 .text-copy {
     fill: none;

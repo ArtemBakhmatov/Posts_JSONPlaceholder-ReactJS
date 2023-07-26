@@ -4,7 +4,7 @@ import './myButton.scss';
 const MyButton = ({children,...props}) => {
     return (
         <button 
-            className='myBtn'
+            className='myBtn myBtn__post'
             {...props}
         >
             {children}

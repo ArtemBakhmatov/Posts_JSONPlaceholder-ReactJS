@@ -11,3 +11,18 @@
     background-color: #fff;
     box-shadow: 0 0 10px #c1c1c1;
 }
+
+@media (max-width: 992px) {
+    .filter {
+        width: 510px;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter {
+        width: 100%;
+        height: 140px;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
